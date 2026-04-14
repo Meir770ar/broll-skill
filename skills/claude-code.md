@@ -1,6 +1,6 @@
 ---
 name: talking-head-broll
-description: "Add AI-selected B-roll clips, word-level captions, voice enhancement, and optional AI music to a talking-head video. Use when the user provides a TALKING-HEAD video file (person speaking to camera) and wants to add B-roll. Triggers: 'B-roll', 'broll', 'ברול', 'בירול', 'הוסף קליפים', 'add B-roll to this video'. Do NOT use for screen recordings."
+description: "Add AI-selected B-roll clips, word-level captions, voice enhancement, and optional AI music to a talking-head video. Use when the user provides a video file of a person speaking to camera and wants to add B-roll. Triggers: 'B-roll', 'broll', 'ברול', 'בירול', 'הוסף קליפים', 'add B-roll to this video'."
 ---
 
 # Talking-Head B-roll Editor — Claude Code
@@ -45,7 +45,6 @@ Replace placeholders during install:
 
 ## What NOT to do
 
-- ❌ Do not use on screen recordings — that is a different skill.
 - ❌ Do not run parallel pipelines on the same machine (shared `/tmp`).
 - ❌ Do not skip the user's config — it controls music, captions, PIP position.
 

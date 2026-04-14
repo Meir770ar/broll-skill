@@ -1,6 +1,6 @@
 ---
 name: talking-head-broll
-description: "Add AI-selected B-roll clips, word-level captions, voice enhancement, and optional AI music to a talking-head video. Use ONLY when the user sends a TALKING-HEAD video (person speaking to camera — NOT a screen recording) and asks for B-roll editing. Trigger words: בירול, ברול, B-roll, broll, הוסף קליפים. For screen recordings use screen-tutorial instead. If unclear whether input is talking-head or screen recording, ASK before running."
+description: "Add AI-selected B-roll clips, word-level captions, voice enhancement, and optional AI music to a talking-head video. Use when the user sends a talking-head video (person speaking to camera) and asks for B-roll editing. Trigger words: בירול, ברול, B-roll, broll, הוסף קליפים."
 ---
 
 # Talking-Head B-roll Editor — OpenClaw
@@ -43,10 +43,8 @@ bash <PIPELINE_PATH> \
 - **ONE command.** Pipeline handles all steps.
 - **Wait** for `✅ Done` in output before telling user "שלחתי".
 - **Total time: 3-6 minutes** for 1-2 minute inputs. Do not retry.
-- **Do NOT use for screen recordings** — use screen-tutorial skill instead.
 
 ## What NOT to do
 
 - ❌ Run in parallel (shared `/tmp`).
 - ❌ Retry to "verify" — trust the completion marker.
-- ❌ Run on screen recordings — use the correct skill.

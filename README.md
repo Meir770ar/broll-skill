@@ -92,6 +92,12 @@ Time: **3-6 minutes** for a 1-2 minute input video.
 
 ---
 
+## Author
+
+Built by **Meir Arad** — [mehubarim.org.il](https://mehubarim.org.il).
+
+Contributions welcome via PR.
+
 ## License
 
-MIT. User-provided assets (fonts, logos, music) have their own licenses.
+MIT — see [LICENSE](LICENSE). User-provided assets (fonts, logos, music) carry their own licenses.

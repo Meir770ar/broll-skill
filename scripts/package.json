@@ -1,11 +1,12 @@
 {
-  "name": "screen-tutorial-scripts",
+  "name": "broll-skill-scripts",
   "version": "1.0.0",
   "type": "module",
   "private": true,
-  "description": "Pipeline scripts for screen-tutorial skill",
+  "description": "Pipeline scripts for the talking-head B-roll skill",
+  "author": "Meir Arad",
+  "license": "MIT",
   "dependencies": {
-    "@google-cloud/storage": "^7.12.0",
     "axios": "^1.7.0",
     "form-data": "^4.0.0"
   }

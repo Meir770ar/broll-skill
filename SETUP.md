@@ -73,15 +73,6 @@ cp skills/claude-code.md ~/.claude/skills/talking-head-broll/SKILL.md
 ### For OpenClaw
 Copy `skills/openclaw.md` to your OpenClaw skills directory (e.g., `/root/openclaw-scripts/skills/talking-head-broll.md`). Replace `<PIPELINE_PATH>` and `<CONFIG_PATH>` placeholders.
 
-If you also use the `screen-tutorial` skill, add the following decision tree to your SOUL.md to prevent conflicts:
-```
-| Keyword | Skill |
-|---|---|
-| "בירול", "B-roll" | talking-head-broll |
-| "מדריך", "screen tutorial" | screen-tutorial |
-| "ערוך" alone — ASK which type |
-```
-
 ## Cost estimate
 
 Per 1-minute video:
