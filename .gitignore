@@ -1,0 +1,25 @@
+# Secrets
+.env
+config.json
+**/firebase-sa.json
+**/service-account.json
+
+# User assets (add your own, don't commit commercial/licensed files)
+remotion/public/logo.png
+remotion/public/bgm.mp3
+remotion/public/fonts/*.otf
+remotion/public/fonts/*.ttf
+remotion/public/media-*/
+
+# Node
+node_modules/
+package-lock.json
+
+# Build artifacts
+output/
+tmp/
+remotion/out/
+
+# OS
+.DS_Store
+Thumbs.db

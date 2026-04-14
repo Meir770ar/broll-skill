@@ -1,0 +1,20 @@
+{
+  "__comment": "Copy to config.json and fill in. Secrets go in .env, not here.",
+
+  "default_phone": "972501234567",
+  "default_language": "he",
+
+  "voice_enhance": true,
+  "show_captions": true,
+
+  "lyria_music_enabled": false,
+  "fallback_music": null,
+  "music_volume": 0.25,
+
+  "pip_size": 280,
+  "pip_position": "bottom-right",
+  "font_family": "Assistant, sans-serif",
+
+  "render_fps": 30,
+  "compress_if_over_mb": 60
+}
