@@ -39,6 +39,15 @@ For each B-roll moment, decide:
 - "transition": "fade" for calm moments, "slide" for energetic, "wipe" for topic changes
 - "highlight_words": array of word indices from the transcript that should be highlighted in captions during this B-roll
 
+STRICT CONTENT CONSTRAINTS (must be respected for EVERY prompt and query):
+- NO women or girls — show only men, neutral objects, landscapes, abstract visuals, or animals
+- NO religious symbols of Christianity (crosses, churches, rosaries, angels with halos), Islam (mosques, crescent moons, prayer rugs), Buddhism (Buddha statues, lotus icons in religious context), or Hinduism (deities, temples)
+- NO images showing Christian, Muslim, or Buddhist people or religious figures
+- NEUTRAL alternatives preferred: nature, technology, abstract shapes, cityscapes, animals, food, tools, workspaces, books
+- When the topic is human-centered, use: men only, hands, silhouettes, back-of-head shots, or crowd footage without visible gender
+- Every prompt MUST append: "no women, no religious symbols, no crosses, no mosques, no temples"
+- Every query MUST avoid words like: woman, girl, female, lady, church, cross, mosque, temple, buddha, monk, nun, prayer — replace with neutral alternatives
+
 Rules (style=${process.env.BROLL_STYLE || 'pip'}):
 - Be LITERAL — match EXACTLY what the speaker is saying
 - Also determine the overall "mood" of the transcript: one of "calm", "energetic", "corporate", "emotional", or "tech"
@@ -91,7 +100,22 @@ try {
   }
 }
 
-console.error(`[analyze-broll] Gemini plan: ${brollPlan.length} segments`);
+// Safety post-filter: sanitize prompts/queries + drop forbidden terms Gemini may have slipped through
+const FORBIDDEN = /\b(woman|women|girl|female|lady|ladies|wife|mother|daughter|sister|bride|nun|cross|crucifix|church|cathedral|chapel|priest|christian|jesus|christ|mosque|islam|muslim|muezzin|imam|ramadan|crescent|buddha|buddhist|buddhism|monk|lotus\s*(position|pose)|temple|hindu|angel|halo|rosary|prayer\s*rug)\b/gi;
+const NEGATIVE_SUFFIX = ', no women, no girls, no religious symbols, no crosses, no mosques, no temples, no buddha, no nuns';
+brollPlan = brollPlan.map(seg => {
+  if (seg.prompt) {
+    seg.prompt = seg.prompt.replace(FORBIDDEN, 'neutral subject');
+    if (!seg.prompt.toLowerCase().includes('no women')) seg.prompt += NEGATIVE_SUFFIX;
+  }
+  if (seg.query) {
+    const cleaned = seg.query.replace(FORBIDDEN, '').replace(/\s+/g, ' ').trim();
+    seg.query = cleaned || 'abstract background';
+  }
+  return seg;
+});
+
+console.error(`[analyze-broll] Gemini plan: ${brollPlan.length} segments (content-filtered)`);
 
 // Helper: Generate image via Runware API
 async function generateRunwareImage(prompt, outputPath) {
@@ -108,7 +132,7 @@ async function generateRunwareImage(prompt, outputPath) {
         taskUUID: crypto.randomUUID(),
         model: "bfl:5@1",
         positivePrompt: prompt,
-        negativePrompt: "blurry, low quality, text, watermark, ugly, deformed",
+        negativePrompt: "blurry, low quality, text, watermark, ugly, deformed, woman, women, girl, female, cross, crucifix, church, cathedral, mosque, buddha, monk, nun, angel, halo, religious symbol, prayer rug, rosary",
         width: 1280,
         height: 720,
         numberResults: 1,
