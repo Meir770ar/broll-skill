@@ -26,12 +26,12 @@ Works with:
 | רכיב | מסלול בסיסי | שדרוג |
 |---|---|---|
 | **Gemini API** (ניתוח B-roll) | חינם (1500 בקשות/יום) | $0.001/סרטון |
-| **ElevenLabs Scribe v2** (תמלול) | Starter ~$5/חודש | כלול במנוי |
+| **תמלול** | **Groq Whisper v3 (חינם)** | ElevenLabs Scribe v2 (~$5/חודש) — דיוק גבוה יותר בעברית |
 | **Pexels Stock Video** | **חינם** (200 בקשות/שעה) | — |
 | **Runware** (AI image gen) | חינם, אופציונלי | — |
 | **מוזיקת רקע Lyria 3 Pro** | מבוטל כברירת מחדל | $0.08/סרטון |
 | **שליחה WhatsApp** | Green API מסלול חינמי | ~$10/חודש pro |
-| **🎯 עלות מינימלית** | **~$5/חודש** (ElevenLabs) | — |
+| **🎯 עלות מינימלית** | **חינם לגמרי** (Groq + Gemini + Pexels) | — |
 
 ---
 
@@ -45,9 +45,13 @@ Works with:
 
 **חובה:**
 - [ ] **Gemini** (חינם) → [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
-- [ ] **ElevenLabs** — Starter ~$5/חודש → [elevenlabs.io](https://elevenlabs.io/app/settings/api-keys)
-  - חייב מנוי בתשלום (כולל Scribe v2 לתמלול + voice cloning לפרויקטים אחרים)
 - [ ] **Pexels** (חינם) → [pexels.com/api](https://www.pexels.com/api/) — נדרש לקליפי B-roll
+
+**תמלול — בחר אחד:**
+- [ ] **Groq** (חינם, ברירת מחדל) → [console.groq.com/keys](https://console.groq.com/keys) — Whisper Large v3
+- [ ] **ElevenLabs** (~$5/חודש, דיוק גבוה יותר) → [elevenlabs.io](https://elevenlabs.io/app/settings/api-keys) — Scribe v2
+
+הבחירה מתבצעת ב-`config.json` → `"transcribe_provider": "groq"` או `"elevenlabs"`.
 
 **אופציונלי:**
 - [ ] **Runware** (חינם tier) → [runware.ai](https://runware.ai) — AI image generation כתחליף/תוספת ל-Pexels
@@ -86,7 +90,14 @@ Output: a polished edit with:
 - 🎵 Optional Lyria 3 Pro AI music matching the content mood
 - 🔊 Voice enhancement (noise reduction + loudness normalization)
 
-Flow: extract audio → enhance voice → transcribe (Scribe v2) → Gemini picks B-roll moments + mood → download Pexels clips (and/or generate AI images) → optional Lyria music → Remotion render → compress → send.
+## 🎨 סגנונות (`broll_style` ב-config)
+
+- **`pip`** — הדובר מופיע כ-Picture-in-Picture בפינה ה-bottom-right, ה-B-roll מתנגן full-screen על הרוב
+- **`fullscreen`** — אין PIP. ה-B-roll full-screen מכסה את הדובר, הקול שלו ממשיך לרוץ ברציפות. Gemini משאיר פערים מכוונים (2-4 שניות כל 15-25 שניות) שבהם הדובר נראה full-screen בעצמו — ב"רגעי עוגן" (נקודה מרכזית, שאלה רטורית, call-to-action)
+
+---
+
+Flow: extract audio → enhance voice → transcribe (Groq or ElevenLabs per config) → Gemini picks B-roll moments + mood → download Pexels clips (and/or generate AI images) → optional Lyria music → Remotion render → compress → send.
 
 Time: **3-6 minutes** for a 1-2 minute input video.
 

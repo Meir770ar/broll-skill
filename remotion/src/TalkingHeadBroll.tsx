@@ -33,6 +33,7 @@ interface TalkingHeadBrollProps {
   pipPosition?: string;
   mood?: string;
   musicSrc?: string | null;
+  style?: 'pip' | 'fullscreen';
 }
 
 export const TalkingHeadBroll: React.FC<TalkingHeadBrollProps> = ({
@@ -43,6 +44,7 @@ export const TalkingHeadBroll: React.FC<TalkingHeadBrollProps> = ({
   pipSize = 280,
   mood,
   musicSrc,
+  style = 'pip',
 }) => {
   const frame = useCurrentFrame();
   
@@ -87,8 +89,8 @@ export const TalkingHeadBroll: React.FC<TalkingHeadBrollProps> = ({
         </Sequence>
       ))}
 
-      {/* Layer 3: PIP (talking head small, only during B-roll) */}
-      {broll.map((segment, i) => (
+      {/* Layer 3: PIP (talking head small, only during B-roll) — only in 'pip' style */}
+      {style === 'pip' && broll.map((segment, i) => (
         <Sequence
           key={`pip-${i}`}
           from={segment.startFrame}

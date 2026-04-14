@@ -39,12 +39,19 @@ For each B-roll moment, decide:
 - "transition": "fade" for calm moments, "slide" for energetic, "wipe" for topic changes
 - "highlight_words": array of word indices from the transcript that should be highlighted in captions during this B-roll
 
-Rules:
-- B-roll every 10-15 seconds
-- Each clip 4-6 seconds
+Rules (style=${process.env.BROLL_STYLE || 'pip'}):
 - Be LITERAL — match EXACTLY what the speaker is saying
 - Also determine the overall "mood" of the transcript: one of "calm", "energetic", "corporate", "emotional", or "tech"
 - Return JSON OBJECT (not array), no markdown, no explanation
+${process.env.BROLL_STYLE === 'fullscreen' ? `
+FULLSCREEN STYLE RULES (important — the speaker is NOT shown as picture-in-picture):
+- B-roll COVERS the speaker while active. Gaps between B-roll segments = moments the speaker's face shows full-screen.
+- Leave intentional 2-4 second GAPS between B-roll segments every 15-25 seconds so the speaker's face appears — these are "anchor moments" (a punchline, emphasis, or key reveal).
+- Each B-roll clip 4-8 seconds
+- Choose speaker anchor moments at natural emotional peaks (rhetorical questions, key insights, calls to action)` : `
+PIP STYLE RULES (speaker visible in corner throughout):
+- B-roll every 10-15 seconds
+- Each clip 4-6 seconds`}
 
 Transcript: "${transcript.text}"
 

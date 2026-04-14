@@ -41,7 +41,10 @@ console.log('LYRIA_ENABLED=' + (c.lyria_music_enabled ? 'true' : 'false'));
 console.log('VOICE_ENHANCE=' + (c.voice_enhance !== false ? 'true' : 'false'));
 console.log('COMPRESS_THRESHOLD_MB=' + (c.compress_if_over_mb || 60));
 console.log('DEFAULT_PHONE=' + (c.default_phone || ''));
+console.log('BROLL_STYLE=' + (c.broll_style || 'pip'));
+console.log('TRANSCRIBE_PROVIDER=' + (c.transcribe_provider || 'groq'));
 ")"
+export BROLL_STYLE TRANSCRIBE_PROVIDER
 
 echo "[pipeline] Video: $VIDEO"
 INPUT="$VIDEO"
@@ -140,6 +143,7 @@ const props = {
   showCaptions: cfg.show_captions !== false,
   pipSize: cfg.pip_size || 280,
   pipPosition: cfg.pip_position || 'bottom-right',
+  style: cfg.broll_style || 'pip',
   fontFamily: cfg.font_family || 'Assistant, sans-serif',
 };
 

@@ -7,6 +7,12 @@
   "voice_enhance": true,
   "show_captions": true,
 
+  "broll_style": "fullscreen",
+  "__broll_style_options": "pip | fullscreen — 'pip' shows speaker in corner during B-roll; 'fullscreen' covers speaker with B-roll and shows speaker full-screen during gaps (Gemini picks anchor moments)",
+
+  "transcribe_provider": "groq",
+  "__transcribe_provider_options": "groq (free, Whisper Large v3) | elevenlabs (paid, Scribe v2 — more accurate Hebrew)",
+
   "lyria_music_enabled": false,
   "fallback_music": null,
   "music_volume": 0.25,
