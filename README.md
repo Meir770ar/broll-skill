@@ -2,6 +2,15 @@
 
 Turn a talking-head video into a dynamic edit with automatic B-roll clips, word-level captions, and optional AI-generated music.
 
+## 🚀 התקנה בפקודה אחת
+
+Mac / Linux / WSL:
+```bash
+curl -sSL https://raw.githubusercontent.com/Meir770ar/broll-skill/master/install.sh | bash
+```
+
+הסקריפט יבדוק שיש לך Node + ffmpeg + git, ישכפל את הריפו, יתקין תלויות, יכין קבצי config, ויוריד פונטים. בסוף תקבל רשימה של 3 מפתחות API שצריך להשיג (חינם או ~$5).
+
 Works with:
 - **Claude Code** (local) — `skills/claude-code.md`
 - **OpenClaw** (WhatsApp bot) — `skills/openclaw.md`
