@@ -20,6 +20,10 @@ output/
 tmp/
 remotion/out/
 
+# Local music library (200+MB, user-provided / downloaded from Drive)
+music-library/
+music-catalog.json
+
 # OS
 .DS_Store
 Thumbs.db
